@@ -1,5 +1,5 @@
 
-import React,{ useState } from 'react';
+import React,{ useState,useEffect } from 'react';
 import {
   SafeAreaView,
   StyleSheet,
@@ -21,7 +21,7 @@ const App =()=>{
   const fetchDetails = async()=>{
     try {
       
-      const {data} = await Axios.get('https://randomuser.me/api')   //destructuring to directly access the data instead of navigating in object
+      const {data} = await Axios.get('https://randomuser.me/api/')   //destructuring to directly access the data instead of navigating in object
 
       const finalData = data.results[0]
 
@@ -32,12 +32,57 @@ const App =()=>{
     }
   }
 
-  return(
-    <>
-    <Text>Hi</Text>
-    </>
+    useEffect(() =>{
 
-  )
+      fetchDetails()
+
+    },[])
+
+    if(!details){
+      return(
+        <View style={styles.container}>
+          <Text>Loading...</Text>
+        </View>
+      )
+    }else{
+
+      return(
+        <View style={styles.container}>
+
+          <View>
+            <Button
+            rounded
+            style={styles.button}
+            onPress={()=>fetchDetails()}
+            >
+              <Text> New User</Text>
+            </Button>
+          </View>
+
+        </View>
+    
+      )
+
+    }
+
+
+ 
 }
 
 export default App;
+
+
+const styles = StyleSheet.create({
+
+  container: {
+    flex: 1,
+    justifyContent: 'center',
+    alignItems: 'center',
+    backgroundColor:"#222831"
+  },
+  button: {
+    marginTop: 30,
+    paddingHorizontal: 30
+  }
+
+})
