@@ -13,6 +13,7 @@ import Axios from 'axios';
 import {
   Button
 } from 'native-base'
+import User from './components/User';
 
 const App =()=>{
 
@@ -50,6 +51,7 @@ const App =()=>{
         <View style={styles.container}>
 
           <View>
+            <User details={details}/>
             <Button
             rounded
             style={styles.button}
