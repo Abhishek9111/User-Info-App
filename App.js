@@ -23,9 +23,9 @@ const App =()=>{
       
       const {data} = await Axios.get('https://randomuser.me/api')   //destructuring to directly access the data instead of navigating in object
 
-      const details = data.results[0]
+      const finalData = data.results[0]
 
-      setDetails[details]
+      setDetails[finalData]
 
     } catch (error) {
       console.log(error)
